@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/pacific-atlantic-water-flow
+
 /**
  * @param {number[][]} matrix
  * @return {number[][]}
@@ -10,16 +12,22 @@ const pacificAtlantic = function(matrix) {
   const [numOfRows, numOfColumns] = [matrix.length, matrix[0].length];
 
   const pacificVisited = [];
-  const pacificResult = [];
+  const pacificReachable = [];
   const pacificQueue = [];
 
   const atlanticVisited = [];
-  const atlanticResult = [];
+  const atlanticReachable = [];
   const atlanticQueue = [];
 
   for (let i = 0; i < numOfRows; i++) {
-    pacificVisited.push(Array.from({ length: numOfColumns }).map(_ => false));
-    atlanticVisited.push(Array.from({ length: numOfColumns }).map(_ => false));
+    [
+      pacificVisited,
+      pacificReachable,
+      atlanticVisited,
+      atlanticReachable
+    ].forEach(array => {
+      array.push(Array.from({ length: numOfColumns }).map(_ => false));
+    });
   }
 
   for (let column = 0; column < numOfColumns; column++) {
@@ -33,7 +41,7 @@ const pacificAtlantic = function(matrix) {
   }
 
   while (pacificQueue.length > 0) {
-    BFS(matrix, pacificQueue, pacificResult, pacificVisited);
+    BFS(matrix, pacificQueue, pacificReachable, pacificVisited);
   }
 
   for (let column = 0; column < numOfColumns; column++) {
@@ -47,29 +55,27 @@ const pacificAtlantic = function(matrix) {
   }
 
   while (atlanticQueue.length > 0) {
-    BFS(matrix, atlanticQueue, atlanticResult, atlanticVisited);
+    BFS(matrix, atlanticQueue, atlanticReachable, atlanticVisited);
   }
 
   const result = [];
 
-  for (const pacific of pacificResult) {
-    if (
-      atlanticResult.find(
-        atlantic => atlantic[0] === pacific[0] && atlantic[1] === pacific[1]
-      ) != null
-    ) {
-      result.push(pacific);
+  for (let row = 0; row < numOfRows; row++) {
+    for (let column = 0; column < numOfColumns; column++) {
+      if (pacificReachable[row][column] && atlanticReachable[row][column]) {
+        result.push([row, column]);
+      }
     }
   }
 
   return result;
 };
 
-function BFS(matrix, queue, result, visited) {
+function BFS(matrix, queue, reachable, visited) {
   const [numOfRows, numOfColumns] = [matrix.length, matrix[0].length];
 
   const [row, column] = queue.pop();
-  result.push([row, column]);
+  reachable[row][column] = true;
 
   const up = [row - 1, column];
   const down = [row + 1, column];
