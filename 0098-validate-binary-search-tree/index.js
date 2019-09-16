@@ -1,5 +1,3 @@
-// https://leetcode.com/problems/validate-binary-search-tree/
-
 function inorder(node) {
   if (node == null) {
     return [];
@@ -22,7 +20,7 @@ function inorder(node) {
  * @param {TreeNode} root
  * @return {boolean}
  */
-const isValidBST = function(root) {
+const isValidBST_inorder = function(root) {
   if (root == null) {
     return true;
   }
@@ -41,3 +39,34 @@ const isValidBST = function(root) {
 
   return true;
 };
+
+const isValidBST_iterative = function(root) {
+  if (root == null) {
+    return true;
+  }
+
+  const stack = [[root, null, null]];
+
+  while (stack.length > 0) {
+    const [node, lowerLimit, upperLimit] = stack.pop();
+
+    if (node == null) {
+      continue;
+    }
+
+    if (lowerLimit != null && node.val <= lowerLimit) {
+      return false;
+    }
+
+    if (upperLimit != null && upperLimit <= node.val) {
+      return false;
+    }
+
+    stack.push([node.left, lowerLimit, node.val]);
+    stack.push([node.right, node.val, upperLimit]);
+  }
+
+  return true;
+};
+
+const isValidBST = isValidBST_iterative;
