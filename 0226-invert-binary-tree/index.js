@@ -25,3 +25,29 @@ const invertTree = function(root) {
 
   return inverted;
 };
+
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+const invertTree_stack = function(root) {
+  const stack = [root];
+
+  while (stack.length > 0) {
+    const node = stack.pop();
+
+    if (node == null) {
+      continue;
+    }
+
+    const { left, right } = node;
+
+    node.left = right;
+    node.right = left;
+
+    stack.push(left);
+    stack.push(right);
+  }
+
+  return root;
+};
