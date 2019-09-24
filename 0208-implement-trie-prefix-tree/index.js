@@ -13,7 +13,7 @@ const indexMap = "abcdefghijklmnopqrstuvwxyz".split("").reduce(
  */
 var Trie = function() {
   this.hasWord = false;
-  this.children = Array.from({ length: 26 });
+  this.children = new Array(26);
 };
 
 /**
@@ -22,19 +22,18 @@ var Trie = function() {
  * @return {void}
  */
 Trie.prototype.insert = function(word) {
-  if (word.length === 0) {
-    this.hasWord = true;
-    return;
+  let currentNode = this;
+
+  for (const char of word) {
+    const index = indexMap[char];
+    if (currentNode.children[index] == null) {
+      currentNode.children[index] = new Trie();
+    }
+
+    currentNode = currentNode.children[index];
   }
 
-  const [first, rest] = [word[0], word.slice(1)];
-  const firstIndex = indexMap[first];
-
-  if (this.children[firstIndex] == null) {
-    this.children[firstIndex] = new Trie();
-  }
-
-  this.children[firstIndex].insert(rest);
+  currentNode.hasWord = true;
 };
 
 /**
@@ -43,20 +42,18 @@ Trie.prototype.insert = function(word) {
  * @return {boolean}
  */
 Trie.prototype.search = function(word) {
-  if (word.length === 0) {
-    return this.hasWord;
+  let currentNode = this;
+
+  for (const char of word) {
+    const index = indexMap[char];
+    if (currentNode.children[index] == null) {
+      return false;
+    }
+
+    currentNode = currentNode.children[index];
   }
 
-  const [first, rest] = [word[0], word.slice(1)];
-  const firstIndex = indexMap[first];
-
-  const child = this.children[firstIndex];
-
-  if (child == null) {
-    return false;
-  }
-
-  return child.search(rest);
+  return currentNode.hasWord;
 };
 
 /**
@@ -65,20 +62,18 @@ Trie.prototype.search = function(word) {
  * @return {boolean}
  */
 Trie.prototype.startsWith = function(prefix) {
-  if (prefix.length === 0) {
-    return true;
+  let currentNode = this;
+
+  for (const char of prefix) {
+    const index = indexMap[char];
+    if (currentNode.children[index] == null) {
+      return false;
+    }
+
+    currentNode = currentNode.children[index];
   }
 
-  const [first, rest] = [prefix[0], prefix.slice(1)];
-  const firstIndex = indexMap[first];
-
-  const child = this.children[firstIndex];
-
-  if (child == null) {
-    return false;
-  }
-
-  return child.startsWith(rest);
+  return true;
 };
 
 /**
