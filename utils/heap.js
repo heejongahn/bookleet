@@ -72,6 +72,10 @@ class Heap {
     return popNode;
   };
 
+  peek = () => {
+    return this.elements[0];
+  };
+
   swap = (i, j) => {
     const tmp = this.elements[i];
     this.elements[i] = this.elements[j];
