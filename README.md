@@ -8,10 +8,10 @@ yet another big-company-whiteboard-algo coding interview prep repo. <del>[this](
 
 ### Week 1: Arrays and Strings (20)
 
-- [ ] Longest Substring Without Repeating Characters
-- [ ] Container With Most Water
-- [ ] 3Sum
-- [ ] Next Permutation
+- [x] Longest Substring Without Repeating Characters
+- [x] Container With Most Water
+- [x] 3Sum
+- [x] Next Permutation
 - [ ] Multiply Strings
 - [ ] Rotate Image
 - [ ] Jump Game
