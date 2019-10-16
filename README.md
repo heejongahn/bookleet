@@ -12,14 +12,14 @@ yet another big-company-whiteboard-algo coding interview prep repo. <del>[this](
 - [x] Container With Most Water
 - [x] 3Sum
 - [x] Next Permutation
-- [ ] Multiply Strings
+- [x] Multiply Strings
 - [x] Rotate Image
 - [x] Jump Game
 - [x] Plus One
-- [ ] Minimum Window Substring
-- [ ] Read N Characters Given Read4 II - Call multiple times
-- [ ] Longest Substring with At Most Two Distinct Characters
-- [ ] Missing Ranges
+- [x] Minimum Window Substring
+- [x] Read N Characters Given Read4 II - Call multiple times
+- [x] Longest Substring with At Most Two Distinct Characters
+- [x] Missing Ranges
 - [ ] Next Closest Time
 - [ ] Expressive Words
 - [ ] Find And Replace in String
