@@ -20,14 +20,14 @@ yet another big-company-whiteboard-algo coding interview prep repo. <del>[this](
 - [x] Read N Characters Given Read4 II - Call multiple times
 - [x] Longest Substring with At Most Two Distinct Characters
 - [x] Missing Ranges
-- [ ] Next Closest Time
-- [ ] Expressive Words
-- [ ] Find And Replace in String
-- [ ] Maximize Distance to Closest Person
-- [ ] Valid Parentheses
-- [ ] Merge k Sorted Lists
-- [ ] Trapping Rain Water
-- [ ] Kth Largest Element in an Array
+- [x] Next Closest Time
+- [x] Expressive Words
+- [x] Find And Replace in String
+- [x] Maximize Distance to Closest Person
+- [x] Valid Parentheses
+- [x] Merge k Sorted Lists
+- [x] Trapping Rain Water
+- [x] Kth Largest Element in an Array
 
 ### Week 2: Array and Strings(4), Linked List (4), Recursion (6)
 
